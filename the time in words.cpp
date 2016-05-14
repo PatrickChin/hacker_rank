@@ -10,15 +10,15 @@ string ntos(int n)
 {
 	switch (n)
 	{
-	case 1: return "one";
-	case 2: return "two";
-	case 3: return "three";
-	case 4: return "four";
-	case 5: return "five";
-	case 6: return "six";
-	case 7: return "seven";
-	case 8: return "eight";
-	case 9: return "nine";
+	case 1:  return "one";
+	case 2:  return "two";
+	case 3:  return "three";
+	case 4:  return "four";
+	case 5:  return "five";
+	case 6:  return "six";
+	case 7:  return "seven";
+	case 8:  return "eight";
+	case 9:  return "nine";
 	case 10: return "ten";
 	case 11: return "eleven";
 	case 12: return "twelve";
@@ -31,20 +31,12 @@ string ntos(int n)
 	case 17:
 	case 19: return ntos(n-10) + "teen";
 	case 20: return "twenty";
-	case 21:
-	case 22:
-	case 23:
-	case 24:
-	case 25:
-	case 26:
-	case 27:
-	case 28:
-	case 29: return "twenty " + ntos(n-20);
+	case 21 ... 29: return "twenty " + ntos(n-20);
 	}
 	return "asdf";
 }
 
-int main(int argc, char* argv[])
+int main()
 {
 	int h, s;
 	cin >> h >> s;

@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/encryption/submissions
+// https://www.hackerrank.com/challenges/encryption
 
 #include <iostream>
 #include <string>
@@ -6,28 +6,28 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
+int main()
 {
-	string s;
-	cin >> s;
-	int len = s.length();
-	float sqlen = sqrt(len);
-	int rows = floor(sqlen);
-	int cols = ceil(sqlen);
-	if (rows*cols < len)
-		if (cols > rows)
-			rows++;
-		else cols++;
+    string s;
+    cin >> s;
 
-	for (int i = 0; i < cols; i++)
-	{
-		for (int j = 0; j < rows; j++)
-		{
-			int k = j*cols + i;
-			if (k < len)
-				cout << s[k];
-		}
-		cout << " ";
-	}
+    int len = s.length();
+    float sqlen = sqrt(len);
+    int rows = floor(sqlen);
+    int cols = ceil(sqlen);
+
+    if (rows*cols < len)
+        cols > rows ?  rows++ : cols++;
+
+    for (int i = 0; i < cols; i++)
+    {
+        for (int j = 0; j < rows; j++)
+        {
+            int k = j*cols + i;
+            if (k < len)
+                cout << s[k];
+        }
+        cout << " ";
+    }
 }
 
