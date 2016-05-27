@@ -17,11 +17,12 @@ int main(void)
         o.push_back(make_pair(i,t+d));
     }
 
-    sort(o.begin(), o.end(), [](pair<int,int> a, pair<int,int> b) {
-        if (a.second == b.second)
-            return a.first < b.first;
-        return a.second < b.second;
-    });
+    sort(o.begin(), o.end(),
+        [](const pair<int,int> &a, const pair<int,int> &b) {
+            if (a.second == b.second)
+                return a.first < b.first;
+            return a.second < b.second;
+        });
 
     cout << o[0].first+1;
     for (int i = 1; i < n; ++i)

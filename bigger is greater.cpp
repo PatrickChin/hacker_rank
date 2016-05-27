@@ -6,23 +6,22 @@
 
 using namespace std;
 
-// template <BidirectionalIterator It>
-template <typename It>
-bool my_next_permutation(It first, It last)
+// template <BidirectionalBidirIterator BidirIt>
+template <class BidirIt>
+bool my_next_permutation(BidirIt first, BidirIt last)
 {
-
     if (first == last) return false;
-    It pivot = last; --pivot;
+    BidirIt pivot = last; --pivot;
     if (first == pivot) return false;
 
-    It previous = pivot; --pivot;
+    BidirIt previous = pivot; --pivot;
     while (*pivot >= *previous)
     {
         if (pivot == first) return false;
         --pivot; --previous;
     }
 
-    It successor = last; --successor;
+    BidirIt successor = last; --successor;
     while (*successor <= *pivot)
     {
         --successor;
@@ -31,7 +30,6 @@ bool my_next_permutation(It first, It last)
 
     swap(*pivot, *successor);
     reverse(previous, last);
-
     return true;
 }
 

@@ -9,11 +9,11 @@
 using namespace std;
 
 template<typename T1, typename T2>
-ostream& operator<<(ostream& out, const pair<T1,T2> p)
+ostream& operator<<(ostream& out, const pair<T1,T2> &p)
     { return out << "(" << p.first << "," << p.second << ")"; }
 
 template<typename Container>
-ostream& ostream_container(ostream& out, const Container arr)
+ostream& ostream_container(ostream& out, const Container &arr)
 {
     auto first = arr.begin();
     auto last = arr.end();
@@ -26,11 +26,11 @@ ostream& ostream_container(ostream& out, const Container arr)
 }
 
 template<typename T, unsigned int L>
-ostream& operator<<(ostream& out, const array<T,L> arr)
+ostream& operator<<(ostream& out, const array<T,L> &arr)
     { return ostream_container(out, arr); }
 
 template<typename Key, typename T>
-ostream& operator<<(ostream& out, const unordered_map<Key,T> map)
+ostream& operator<<(ostream& out, const unordered_map<Key,T> &map)
     { return ostream_container(out, map); }
 
 template<int lo, int hi>

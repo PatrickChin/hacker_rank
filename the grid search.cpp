@@ -5,7 +5,8 @@
 
 using namespace std;
 
-bool found(vector<string> G, vector<string> g, size_t h, size_t w, size_t ii, size_t jj)
+bool found(const vector<string> &G, const vector<string> &g,
+        const size_t &h, const size_t &w, const size_t &ii, const size_t &jj)
 {
     for (size_t i = 1; i < h; ++i)
         for (size_t j = 0; j < w; ++j)
@@ -14,8 +15,8 @@ bool found(vector<string> G, vector<string> g, size_t h, size_t w, size_t ii, si
     return true;
 }
 
-bool solve(vector<string> G, size_t H, size_t W,
-        vector<string> g, size_t h, size_t w)
+bool solve(const vector<string> &G, const size_t &H, const size_t &W,
+           const vector<string> &g, const size_t &h, const size_t &w)
 {
     for (size_t i = 0; i <= H-h; ++i)
     {
