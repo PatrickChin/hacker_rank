@@ -12,6 +12,8 @@ inline bool all_gt_eq(const array<int,4> &a, const array<int,4> &b)
 
 int main(int argc, char *argv[])
 {
+    freopen(argv[1], "r", stdin);
+
     int n; cin >> n;
     int m = n/4;
 
@@ -39,7 +41,7 @@ int main(int argc, char *argv[])
     }
 
     int start = 0, mindiff = end;
-    while (true)
+    while (end < n)
     {
         while (true)
         {
@@ -50,9 +52,7 @@ int main(int argc, char *argv[])
             }
             curr_freq[s[start++]]--;
         }
-        if (++end >= n)
-            break;
-        curr_freq[s[end]]++;
+        curr_freq[s[++end]]++;
     }
 
     cout << mindiff+1 << endl;
