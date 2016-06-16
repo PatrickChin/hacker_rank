@@ -13,13 +13,13 @@ int main(int argc, char *argv[])
         for (int i = 0; i < n; i++)
             cin >> a[i];
 
-        int inv = 0;
+        bool parity = true;
         for (int i = 0; i < n; ++i)
             for (int j = i+1; j < n; ++j)
                 if (a[i] > a[j])
-                    inv++;
+                    parity = !parity;
 
-        cout << ((inv & 0x1) ? "NO" : "YES") << endl;
+        cout << (parity ? "YES" : "NO") << endl;
         delete[] a;
     }
     return 0;

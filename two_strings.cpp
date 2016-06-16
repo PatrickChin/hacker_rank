@@ -17,19 +17,14 @@ int main()
         if (a.length() > b.length()) 
             swap(a, b);
 
-        array<int, 26> ca; 
-        ca.fill(0);
-
-        for (char c : a)
+        array<int, 26> ca{};
+        for (char &c : a)
             ca[c-'a']++;
 
         bool has_sub = false;
-        for (char c : b)
-            if (ca[c-'a'])
-            {
-                has_sub = true;
+        for (char &c : b)
+            if ((has_sub = ca[c-'a']))
                 break;
-            }
 
         cout << (has_sub ? "YES" : "NO") << endl;
     }

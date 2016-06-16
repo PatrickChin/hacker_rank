@@ -13,7 +13,7 @@ int main(void)
 
     for (int i=0; i<n; ++i)
     {
-        cin >> v[i]; 
+        cin >> v[i];
         w[n-v[i]] = i;
     }
 

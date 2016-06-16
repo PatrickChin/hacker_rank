@@ -12,8 +12,6 @@ inline bool all_gt_eq(const array<int,4> &a, const array<int,4> &b)
 
 int main(int argc, char *argv[])
 {
-    freopen(argv[1], "r", stdin);
-
     int n; cin >> n;
     int m = n/4;
 
@@ -27,17 +25,19 @@ int main(int argc, char *argv[])
             case 'G': c = 3; break;
         }
 
-    array<int,4> req_freq{-m, -m, -m, -m};
+    array<int,4> req_freq;
+    req_freq.fill(-m);
     for (const char &c : s)
         req_freq[c]++;
 
-    array<int,4> curr_freq{0, 0, 0, 0};
+    array<int,4> curr_freq{};
     int end = 0;
-    for (; end < n; ++end)
+    while (end < n)
     {
         curr_freq[s[end]]++;
         if (all_gt_eq(curr_freq, req_freq))
             break;
+        end++;
     }
 
     int start = 0, mindiff = end;
@@ -50,11 +50,14 @@ int main(int argc, char *argv[])
                 mindiff = min(mindiff, end-start);
                 break;
             }
-            curr_freq[s[start++]]--;
+            curr_freq[s[start]]--;
+            start++;
         }
-        curr_freq[s[++end]]++;
+        end++;
+        curr_freq[s[end]]++;
     }
 
+    // +1 is added since start and end are inclusive
     cout << mindiff+1 << endl;
     return 0;
 }

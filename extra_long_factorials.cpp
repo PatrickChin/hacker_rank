@@ -23,10 +23,9 @@ void multiply(int a, int b[MAXL])
 
 int main()
 {
-    int n;
-    cin >> n;
+    int n; cin >> n;
 
-    int *result = new int[MAXL]{0};
+    int result[MAXL]{};
     result[0] = 1;
 
     for (int i = 1; i <= n; i++)

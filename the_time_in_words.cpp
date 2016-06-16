@@ -2,11 +2,10 @@
 
 #include <iostream>
 #include <string>
-#include <cmath>
 
 using namespace std;
 
-string ntos(int n)
+string ntos(const int &n)
 {
     switch (n)
     {
@@ -33,42 +32,35 @@ string ntos(int n)
     case 20: return "twenty";
     case 21 ... 29: return "twenty " + ntos(n-20);
     }
-    return "asdf";
+    return string();
 }
 
 int main()
 {
     int h, s;
     cin >> h >> s;
+
     if (s == 0)
-    {
         cout << ntos(h) << " o' clock" << endl;
-        return 0;
-    }
-    if (s == 30)
-    {
+    else if (s == 30)
         cout << "half past " << ntos(h) << endl;
-        return 0;
+    else
+    {
+        bool past = s < 30;
+        if (!past)
+        {
+            h++;
+            s = 60-s;
+        }
+
+        if (s == 15)
+            cout << "quarter ";
+        else
+            cout << ntos(s) << " minute" << (s == 1 ? " " : "s ");
+
+        cout << (past ? "past " : "to ") << ntos(h) << endl;
     }
 
-    bool past = s < 30;
-    if (!past)
-    {
-        h++;
-        s = 60-s;
-    }
-
-    if (s == 15)
-    {
-        cout << "quarter " << (past ? "past " : "to ") << ntos(h) << endl;
-        return 0;
-    }
-    if (s == 1)
-    {
-        cout << "one minute " << (past ? "past " : "to ") << ntos(h) << endl;
-        return 0;
-    }
-    cout << ntos(s) << " minutes " << (past ? "past " : "to ") << ntos(h) << endl;
     return 0;
 }
 
