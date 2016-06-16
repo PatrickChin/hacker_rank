@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
     for (char &c : s)
         freq[c-'a']++;
 
-    int f1, f2, nf1=0, nf2=0;
+    int f1=-1, f2=-1;
+    int nf1=0, nf2=0;
     for (int &i : freq)
     {
         if (i == 0)  continue;
