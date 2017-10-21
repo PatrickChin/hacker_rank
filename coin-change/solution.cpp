@@ -1,12 +1,44 @@
 // https://www.hackerrank.com/challenges/coin-change/problem
 
-#include <cmath>
-#include <cstdio>
 #include <vector>
 #include <iostream>
-#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
+
+template<class InputIt>
+long countways_impl(InputIt first, InputIt const& last, int const& goal,
+        unordered_map<long, long> &store)
+{
+    if (goal == 0)
+        return 1;
+
+    if (goal < 0)
+        return 0;
+
+    if (first == last)
+        return 0;
+
+    long ways = 0;
+    int coin = *first++;
+
+    long key = coin | (long) goal << 32;
+    if (store.find(key) != store.end())
+        return store[key];
+
+    for (int rem = goal; rem >= 0; rem -= coin)
+        ways += countways_impl(first, last, rem, store);
+
+    store[key] = ways;
+    return ways;
+}
+
+template<class InputIt>
+long countways(InputIt first, InputIt const& last, int const& goal)
+{
+    unordered_map<long, long> store;
+    return countways_impl(first, last, goal, store);
+}
 
 int main()
 {
@@ -21,23 +53,8 @@ int main()
         if (ci <= n)
             c.push_back(ci);
     }
-    sort(c.begin(), c.end());
 
-    vector<int> ways(n+1, 0);
-    for (int i = 1, j = 0; i < n+1; i++)
-    {
-        if (j < m && c[j] == i)
-        {
-            j++;
-            ways[i] = 1;
-        }
-        for (int k = 1; k < i/2+1; k++)
-        {
-            ways[i] += ways[k] * ways[i-k];
-        }
-    }
-
-    cout << ways[n] << endl;
+    cout << countways(c.begin(), c.end(), n) << endl;
 
     return 0;
 }
